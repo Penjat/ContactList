@@ -9,6 +9,7 @@
 #import "ContactList.h"
 
 @implementation ContactList
+
 -(id)init{
     self = [super init];
     if(self){
@@ -21,6 +22,7 @@
 -(void)addContact:(Contact*)newContact{
     [_contacts addObject:newContact];
 }
+
 -(void)listContacts{
     NSLog(@"%lu contacts to list",_contacts.count);
     int i = 0;
@@ -29,6 +31,7 @@
         i++;
     }
 }
+
 -(void)showContact:(NSNumber *)contactIndex{
     
     //check if value is in range
@@ -40,4 +43,18 @@
     }
     NSLog(@"your index is out of range");
 }
+
+-(NSNumber*)searchContactForTerm:(NSString *)searchTerm{
+    //[userInput rangeOfString:@"find"].location != NSNotFound
+    int i=0;
+    for (Contact * contact in self.contacts) {
+        
+        if( ([contact.name rangeOfString:searchTerm].location != NSNotFound) || ([contact.email rangeOfString:searchTerm].location != NSNotFound)){
+            [self showContact:@(i)];
+        }
+        i++;
+    }
+    return @(i);
+}
+
 @end

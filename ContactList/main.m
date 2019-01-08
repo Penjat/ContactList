@@ -69,7 +69,16 @@ int main(int argc, const char * argv[]) {
                 [contactList showContact:contactIndex];
                 
             }else if([userInput rangeOfString:@"find"].location != NSNotFound){
+                NSLog(@"searching contacts...");
                 NSArray * userInputs = [userInput componentsSeparatedByString:@" "];
+                if(userInputs.count == 1){
+                    //user didn't add any info after find
+                    NSLog(@"please enter a search term after find");
+                }else{
+                    //search all the contacts for the term
+                    NSNumber * numberOfResults = [contactList searchContactForTerm:userInputs[1]];
+                    NSLog(@"%li results match the search term: %@",(long)[numberOfResults integerValue],userInputs[1]);
+                }
                 
             }else{
                 NSLog(@"not a valid command");

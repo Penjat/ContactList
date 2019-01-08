@@ -22,10 +22,22 @@
     [_contacts addObject:newContact];
 }
 -(void)listContacts{
+    NSLog(@"%lu contacts to list",_contacts.count);
     int i = 0;
     for (Contact * contact in _contacts) {
         NSLog(@"%i: %@",i,[contact name]);
         i++;
     }
+}
+-(void)showContact:(NSNumber *)contactIndex{
+    
+    //check if value is in range
+    if([contactIndex integerValue] < self.contacts.count ){
+        Contact * contact = _contacts[[contactIndex integerValue]];
+        NSLog(@"contact name: %@",[contact name]);
+        NSLog(@"contact email: %@",[contact email]);
+        return;
+    }
+    NSLog(@"your index is out of range");
 }
 @end

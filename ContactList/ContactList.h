@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 -(id)init;
 -(void)addContact:(Contact*)newContact;
 -(void)listContacts;
+-(void)showContact:(NSNumber*)contactIndex;
+
 @end
 
 NS_ASSUME_NONNULL_END

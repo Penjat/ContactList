@@ -18,7 +18,7 @@
     
     //parse into NSString and remove spaces and line breaks
     NSString * outputString = [NSString stringWithCString:answerInput encoding:NSUTF8StringEncoding];;
-    outputString = [outputString stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    outputString = [outputString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     
     return outputString;
 }

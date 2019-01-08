@@ -14,6 +14,25 @@
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         ContactList * contactList = [[ContactList alloc] init];
+        
+        NSString * someString = @"hello how are you";
+        NSRange isRange = [someString rangeOfString:@"hello " options:NSCaseInsensitiveSearch];
+        
+        if(isRange.location == 0) {
+            NSLog(@"found it");
+        } else {
+            NSRange isSpacedRange = [someString rangeOfString:@" hello " options:NSCaseInsensitiveSearch];
+            if(isSpacedRange.location != NSNotFound) {
+                NSLog(@"found it");
+            }else {
+                NSRange isSpacedRange = [someString rangeOfString:@" hello " options:NSCaseInsensitiveSearch];
+                if(isSpacedRange.location != NSNotFound) {
+                    NSLog(@"found it");
+                }else{
+                    NSLog(@"couldn't find it");
+                }
+            }
+        }
         while(true){
             
             InputCollector * inputCollector = [[InputCollector alloc] init];
@@ -39,6 +58,19 @@ int main(int argc, const char * argv[]) {
                 
             }else if([userInput isEqualToString:@"list"]){
                 [contactList listContacts];
+            }else if([userInput isEqualToString:@"show"]){
+                
+                NSLog(@"%lu contacts in list",[contactList contacts].count);
+                
+                //TODO ask about proper naming of a string before it is turned into a number
+                NSString * contactIndexString = [inputCollector inputForPrompt:@"enter the index of the contact you wish to show"];
+                NSNumber * contactIndex = @([contactIndexString integerValue]);
+                
+                [contactList showContact:contactIndex];
+                
+            }else if([userInput rangeOfString:@"find"].location != NSNotFound){
+                NSArray * userInputs = [userInput componentsSeparatedByString:@" "];
+                
             }else{
                 NSLog(@"not a valid command");
             }

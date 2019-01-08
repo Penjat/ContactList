@@ -7,11 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Contact.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactList : NSObject
-
+@property (nonatomic,strong) NSMutableArray * contacts;
+-(id)init;
+-(void)addContact:(Contact*)newContact;
+-(void)listContacts;
 @end
 
 NS_ASSUME_NONNULL_END

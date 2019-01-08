@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Contact : NSObject
 
+-(id)initWithName:(NSString*)name andEmail:(NSString*)email;
+@property (nonatomic,strong) NSString * name;
+@property (nonatomic,strong) NSString * email;
+
 @end
 
 NS_ASSUME_NONNULL_END

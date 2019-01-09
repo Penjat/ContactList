@@ -9,6 +9,7 @@
 #import "InputCollector.h"
 
 @implementation InputCollector
+
 -(NSString *)inputForPrompt:(NSString *)promptString{
     
     //prompt the user for input
@@ -19,7 +20,12 @@
     //parse into NSString and remove spaces and line breaks
     NSString * outputString = [NSString stringWithCString:answerInput encoding:NSUTF8StringEncoding];;
     outputString = [outputString stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    //add the input to history
+    
+    [self.history addObject:outputString];
     
     return outputString;
 }
+
+
 @end

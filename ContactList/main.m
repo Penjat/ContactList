@@ -22,6 +22,7 @@ int main(int argc, const char * argv[]) {
             
             NSString *userInput = [inputCollector inputForPrompt:@"please enter a command:"];
             
+            [history addObject:userInput];
             if([userInput isEqualToString:@"quit"]){
                 NSLog(@"Goodbye.");
                 break;
@@ -84,6 +85,18 @@ int main(int argc, const char * argv[]) {
                 NSString *phoneNumber = [inputCollector inputForPrompt:@"enter the phone number"];
                 
                 [contactList addPhoneNumber:phoneNumber withName:phoneName toContact:contactIndex];
+                
+                
+            }else if([userInput isEqualToString:@"history"]){
+                NSLog(@"printing history");
+                for(int i=0; i<3;i++){
+                    int index = ((int)history.count -2) - i;
+                    if(index < 0){
+                        continue;
+                    }
+                    NSString * pastCMD = history[index];
+                    NSLog(@"%@",pastCMD);
+                }
                 
                 
             }else{

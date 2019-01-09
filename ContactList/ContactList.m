@@ -51,7 +51,9 @@
     }
     NSLog(@"your index is out of range");
 }
-
+-(void)addPhone:(NSString*)phoneNumber toContact:(NSString*)contactIndex{
+    
+}
 -(NSNumber*)searchContactForTerm:(NSString *)searchTerm{
     //[userInput rangeOfString:@"find"].location != NSNotFound
     int i=0;

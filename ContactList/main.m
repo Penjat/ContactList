@@ -58,7 +58,7 @@ int main(int argc, const char * argv[]) {
                 
                 [contactList showContact:contactIndex];
                 
-            }else if([userInput rangeOfString:@"find"].location != NSNotFound){
+            }else if([userInput rangeOfString:@"find"].location == 0){
                 NSLog(@"searching contacts...");
                 NSArray * userInputs = [userInput componentsSeparatedByString:@" "];
                 if(userInputs.count == 1){
@@ -69,6 +69,17 @@ int main(int argc, const char * argv[]) {
                     NSNumber * numberOfResults = [contactList searchContactForTerm:userInputs[1]];
                     NSLog(@"%li results match the search term: %@",(long)[numberOfResults integerValue],userInputs[1]);
                 }
+                
+            }else if([userInput rangeOfString:@"add-phone"].location == 0){
+                //adds a phone number with format add-phone (phone-number) to contact (contact)
+                //separate by spaces
+                NSArray * userInputs = [userInput componentsSeparatedByString:@" "];
+                
+                if(userInputs.count != 5){
+                    NSLog(@"Invalid command. Please add phone number in format: add-phone (phone-number) to contact (contact) ");
+                    continue;
+                }
+                
                 
             }else{
                 NSLog(@"not a valid command");

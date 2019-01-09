@@ -15,24 +15,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         ContactList * contactList = [[ContactList alloc] init];
         
-        NSString * someString = @"hello how are you";
-        NSRange isRange = [someString rangeOfString:@"hello " options:NSCaseInsensitiveSearch];
         
-        if(isRange.location == 0) {
-            NSLog(@"found it");
-        } else {
-            NSRange isSpacedRange = [someString rangeOfString:@" hello " options:NSCaseInsensitiveSearch];
-            if(isSpacedRange.location != NSNotFound) {
-                NSLog(@"found it");
-            }else {
-                NSRange isSpacedRange = [someString rangeOfString:@" hello " options:NSCaseInsensitiveSearch];
-                if(isSpacedRange.location != NSNotFound) {
-                    NSLog(@"found it");
-                }else{
-                    NSLog(@"couldn't find it");
-                }
-            }
-        }
         while(true){
             
             InputCollector * inputCollector = [[InputCollector alloc] init];
@@ -45,8 +28,15 @@ int main(int argc, const char * argv[]) {
             }else if([userInput isEqualToString:@"new"]){
                 
                 //get the contact info
-                NSString *contactName = [inputCollector inputForPrompt:@"Enter your username"];
                 NSString *contactEmail = [inputCollector inputForPrompt:@"Enter your E-Mail"];
+                
+                //check for duplicate email
+                if(![contactList checkForDuplicate:contactEmail]){
+                    NSLog(@"the email address %@ has already been added.",contactEmail);
+                    continue;
+                }
+                NSString *contactName = [inputCollector inputForPrompt:@"Enter your username"];
+                
                 
                 //create the contact
                 Contact * newContact = [[Contact alloc] initWithName:contactName andEmail:contactEmail];

@@ -18,6 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(void)listContacts;
 -(void)showContact:(NSNumber*)contactIndex;
 -(NSNumber*)searchContactForTerm:(NSString*)searchTerm;
+-(BOOL)checkForDuplicate:(NSString*)newEmail;
 
 @end
 

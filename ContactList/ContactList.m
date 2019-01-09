@@ -31,7 +31,15 @@
         i++;
     }
 }
-
+-(BOOL)checkForDuplicate:(NSString*)newEmail{
+    //check all the contacts to see if there email matches the new email
+    for (Contact * contact in self.contacts) {
+        if([[contact email] isEqualToString:newEmail]){
+            return NO;
+        }
+    }
+    return YES;
+}
 -(void)showContact:(NSNumber *)contactIndex{
     
     //check if value is in range

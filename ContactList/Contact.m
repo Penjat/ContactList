@@ -14,7 +14,11 @@
     if(self){
         self.name = name;
         self.email = email;
+        self.phoneInfo = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+-(void)addPhoneWithName:(NSString *)phoneName andNumber:(NSString *)phoneNumber{
+    [self.phoneInfo setObject: phoneNumber forKey: phoneName];
 }
 @end

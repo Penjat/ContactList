@@ -51,9 +51,16 @@
     }
     NSLog(@"your index is out of range");
 }
--(void)addPhone:(NSString*)phoneNumber toContact:(NSString*)contactIndex{
+
+-(void)addPhoneNumber:(NSString*)phoneNumber withName:(NSString*)phoneName toContact:(NSNumber*)contactIndex{
     
+    Contact * contact = self.contacts[[contactIndex integerValue]];
+    
+    [contact addPhoneWithName:phoneName andNumber:phoneNumber];
+    
+    NSLog(@"adding: %@:%@ to contact:%@",phoneName,phoneNumber,[contact name]);
 }
+
 -(NSNumber*)searchContactForTerm:(NSString *)searchTerm{
     //[userInput rangeOfString:@"find"].location != NSNotFound
     int i=0;

@@ -13,8 +13,8 @@
     
     //prompt the user for input
     NSLog(@"%@",promptString);
-    char answerInput[10];
-    fgets(answerInput,10,stdin);
+    char answerInput[50];
+    fgets(answerInput,50,stdin);
     
     //parse into NSString and remove spaces and line breaks
     NSString * outputString = [NSString stringWithCString:answerInput encoding:NSUTF8StringEncoding];;

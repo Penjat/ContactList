@@ -15,7 +15,7 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
         ContactList * contactList = [[ContactList alloc] init];
         
-        
+        NSMutableArray * history = [[NSMutableArray alloc] init];
         while(true){
             
             InputCollector * inputCollector = [[InputCollector alloc] init];
@@ -70,15 +70,20 @@ int main(int argc, const char * argv[]) {
                     NSLog(@"%li results match the search term: %@",(long)[numberOfResults integerValue],userInputs[1]);
                 }
                 
-            }else if([userInput rangeOfString:@"add-phone"].location == 0){
-                //adds a phone number with format add-phone (phone-number) to contact (contact)
-                //separate by spaces
-                NSArray * userInputs = [userInput componentsSeparatedByString:@" "];
+            }else if([userInput isEqualToString:@"add-phone"]){
                 
-                if(userInputs.count != 5){
-                    NSLog(@"Invalid command. Please add phone number in format: add-phone (phone-number) to contact (contact) ");
+                NSString *contactIndexString = [inputCollector inputForPrompt:@"enter the contact index"];
+                NSNumber *contactIndex = @([contactIndexString integerValue]);
+                
+                if(contactList.contacts.count <= [contactIndex integerValue]){
+                    NSLog(@"invalid index");
                     continue;
                 }
+                
+                NSString *phoneName = [inputCollector inputForPrompt:@"enter the name of the phone number (mobile, home, etc)"];
+                NSString *phoneNumber = [inputCollector inputForPrompt:@"enter the phone number"];
+                
+                [contactList addPhoneNumber:phoneNumber withName:phoneName toContact:contactIndex];
                 
                 
             }else{

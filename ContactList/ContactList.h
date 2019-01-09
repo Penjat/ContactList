@@ -12,14 +12,16 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContactList : NSObject
+
 @property (nonatomic,strong) NSMutableArray * contacts;
+
 -(id)init;
 -(void)addContact:(Contact*)newContact;
 -(void)listContacts;
 -(void)showContact:(NSNumber*)contactIndex;
 -(NSNumber*)searchContactForTerm:(NSString*)searchTerm;
 -(BOOL)checkForDuplicate:(NSString*)newEmail;
--(void)addPhone:(NSString*)phoneNumber toContact:(NSString*)contactIndex;
+-(void)addPhoneNumber:(NSString*)phoneNumber withName:(NSString*)phoneName toContact:(NSNumber*)contactIndex;
 
 @end
 
